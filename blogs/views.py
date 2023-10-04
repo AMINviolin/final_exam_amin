@@ -103,6 +103,7 @@ def blog_single(req, pid):
                return render(req, 'blog/404.html')
      elif req.method == 'POST':
           form = CommentForm(req.POST)
+          print(req.POST,req.FILES)
           if form.is_valid():
                form.save()
                messages.add_message(req,messages.SUCCESS,'your comment submited')
@@ -158,6 +159,7 @@ def add(req):
           return render(req,'blog/add.html',context=context)
      elif req.method == 'POST':
           form = PostForm(req.POST, req.FILES)
+          
           if form.is_valid():
                form.save()
                return redirect('/blog/')

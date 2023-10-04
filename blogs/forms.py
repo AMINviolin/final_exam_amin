@@ -8,7 +8,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comments
-        fields = ['which_post', 'name', 'email', 'subject', 'message']
+        fields = ['which_post', 'name', 'email', 'message']
 
 
 class ReplayForm(forms.ModelForm):
