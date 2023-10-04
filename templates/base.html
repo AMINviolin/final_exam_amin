@@ -67,12 +67,12 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href={% url 'root:home' %}>Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="{% url 'root:home' %}#about">About</a></li>
+          <li><a href="{% url 'root:home' %}#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href={% url 'blogs:posts' %}>Blog</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="{% url 'root:home' %}#team">Team</a></li>
+          <li><a href={% url 'blogs:blog_home' %}>Blog</a></li>
+          <li><a href="{% url 'root:contact' %}">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               {% for ct in cat %}
@@ -103,7 +103,7 @@
           <a href={% url 'root:home' %} class="logo d-flex align-items-center">
             <span>Impact</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          
           <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -150,9 +150,7 @@
     </div>
 
     <div class="container mt-4">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Impact</span></strong>. All Rights Reserved
-      </div>
+  >
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->

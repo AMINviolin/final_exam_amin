@@ -56,11 +56,9 @@
           <div class="portfolio-description">
             <h2>{{item.subject}}</h2>
             <p>
-              {{item.content}}
+              {{item.content1}}
             </p>
-            <p>
-              {{item.content}}
-            </p>
+
 
             <div class="testimonial-item">
               <p>
@@ -71,8 +69,14 @@
               <div>
                 <img src={{item.ouner_image.url}} class="testimonial-img" alt="">
                 <h3>{{item.ouner_name}}</h3>
-                <h4>{{item.ouner_category}}</h4>
+                {% for cat in item.ouner_category.all %}
+                    <h4>{{cat.name}}</h4>
+                {% endfor %}
               </div>
+              <br><br>
+              <p>
+                {{item.content2}}
+              </p>
             </div>
 
             <p>
@@ -89,11 +93,13 @@
           <div class="portfolio-info">
             <h3>Project information</h3>
             <ul>
-              <li><strong>Category</strong> <span>{{item.category}}</span></li>
+              {% for cat in item.category.all %}
+                <li><strong>Category</strong> <span>{{cat.name}}</span></li>
+              {% endfor %} 
               <li><strong>Client</strong> <span>{{item.client}}</span></li>
               <li><strong>Project date</strong> <span>{{item.project_date}}</span></li>
               <li><strong>Project URL</strong> <a href={{item.project_url}}>view blog</a></li>
-              <li><a href={{item.project.url}} class="btn-visit align-self-start">Visit Website</a></li>
+              <li><a href={{item.project_url}} class="btn-visit align-self-start">Visit Website</a></li>
             </ul>
           </div>
         </div>
