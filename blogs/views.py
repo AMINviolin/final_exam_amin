@@ -26,11 +26,14 @@ def blog_home(req, tag=None, username=None, cat=None):
         posts = Post.objects.filter(author__username=username)
 
     if cat:
-        posts = Post.objects.filter(category__name=cat)
+         print(f"Filtering by category: {cat}")
+         posts = Post.objects.filter(category__name=cat)
+         print(f"Number of matching posts: {posts.count()}")
 
     # Filter posts based on search query if provided
     if req.GET.get('search'):
         posts = Post.objects.filter(title__contains=req.GET.get('search'))
+
 
     # Paginate the posts with 4 posts per page
     posts = Paginator(posts, 3)
@@ -59,13 +62,12 @@ def blog_home(req, tag=None, username=None, cat=None):
 
 def blog_single(req, pid):
      if req.method == 'GET':
-          # try :
+          try :
                comments = Comments.objects.filter(which_post = pid,status = True)
                cat = Category.objects.all()
                replay = Replay.objects.all()
                post = Post.objects.get(id=pid)
                post_list_id = []
-               print(f"pid: {pid}")
                posts = Post.objects.filter(status=True)
                p1 = Post.objects.filter(id=pid)
                for post in posts:
@@ -101,13 +103,14 @@ def blog_single(req, pid):
                     'cat': cat,
                }
                return render(req, 'blog/blog-details.html', context=context)
-          # except:
-          #      return render(req, 'blog/404.html')
+          except:
+               return render(req, 'blog/404.html')
      elif req.method == 'POST':
           form = CommentForm(req.POST)
-          print(req.POST,req.FILES)
+          print(f"pid: {pid}")
           if form.is_valid():
                form.save()
+
                messages.add_message(req,messages.SUCCESS,'your comment submited')
                return redirect(req.path_info)
           else:

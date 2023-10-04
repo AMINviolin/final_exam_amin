@@ -89,8 +89,8 @@
               </div><!-- End post content -->
 
               <div class="meta-bottom">
-                {% for cat in post.category.all %}
-                  <li>Category : {{cat.name}}</a>
+                {% for ct in posts.category.all %}
+                  <li>Category: {{ ct.name }}</li>
                 {% endfor %}
               </div><!-- End meta bottom -->
 
@@ -99,7 +99,7 @@
             <div class="post-author d-flex align-items-center">
               <img src={{posts.auther_img.url}} class="rounded-circle flex-shrink-0" alt="">
               <div>
-                <h4>{{post.auther}}</h4>
+                <h4>{{posts.auther}}</h4>
                 <div class="social-links">
                   <a href={{posts.twitter}}><i class="bi bi-twitter"></i></a>
                   <a href={{posts.facebook}}><i class="bi bi-facebook"></i></a>
@@ -113,21 +113,22 @@
           {% endfor %}
             <div class="comments">
 
-              <h4 class="comments-count">{{post.counted_comment}} Comments</h4>
-
+              <h4 class="comments-count">{{comments.count}} Comments</h4>
+              {% for com in comments %}
               <div id="comment-1" class="comment">
                 <div class="d-flex">
-                  {% for com in comments %}
+                  
                   <div>
                     <h5><a href="">{{com.name}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan,2022</time>
+                    <time datetime="2020-01-01">{{com.created_date|date:"d M Y"}}</time>
                     <p>
                       {{com.message}}
                     </p>
                   </div>
-                  {% endfor %}
+                  
                 </div>
               </div><!-- End comment #1 -->
+              {% endfor %}
 
               <div class="reply-form">
                 <h4>Leave a Reply</h4>
@@ -140,11 +141,14 @@
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <input type="hidden" name="which_post" value={{ post.id }}>
+                    <input type="hidden" name="which_post" value="{{ post.id }}">
                     <input type="text" class="form-control" placeholder="Your Name*" name="name">
                   </div>
                   <div class="col-md-6 form-group">
                     <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input name="subject" type="text" class="form-control" placeholder="subject*">
                   </div>
                 </div>
                 <div class="row">
@@ -177,7 +181,9 @@
               <div class="sidebar-item categories">
                 <h3 class="sidebar-title">Categories</h3>
                 <ul class="mt-3">
-                  <li><a href="#">General <span>(25)</span></a></li>
+                  {% for ct in cat %}
+                  <li><a href="{% url 'blogs:blog_home_with_category' cat=ct.name %}">{{ct.name}}</a></li>
+                  {% endfor %}
                 </ul>
               </div><!-- End sidebar categories-->
 
@@ -201,7 +207,9 @@
               <div class="sidebar-item tags">
                 <h3 class="sidebar-title">Tags</h3>
                 <ul class="mt-3">
-                  <li><a href="#">App</a></li>
+                  {% for tag in posts.tags.all %}
+                    <li><a href="{% url 'blogs:blog_home_with_tag' tag=tag.name %}">{{tag.name}}</a></li>
+                  {% endfor %}
                 </ul>
               </div><!-- End sidebar tags-->
             </div><!-- End Blog Sidebar -->
