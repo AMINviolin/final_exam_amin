@@ -32,57 +32,58 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row g-5">
-
-
+          
           <div class="col-lg-8">
+
+          {% for posts in postss %}
 
             <article class="blog-details">
 
               <div class="post-img">
-                <img src={{post.image.url}} alt="" class="img-fluid">
+                <img src={{posts.image.url}} alt="" class="img-fluid">
               </div>
 
-              <h2 class="title">{{post.title}}</h2>
+              <h2 class="title">{{posts.title}}</h2>
 
               <div class="meta-top">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{post.author}}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{post.created_date}}2</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{post.counted_comment}}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{posts.author}}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{posts.created_date}}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{posts.counted_comment}}</a></li>
                 </ul>
               </div><!-- End meta top -->
 
               <div class="content">
                 <p>
-                  {{post.content1}}
+                  {{posts.content1}}
                 </p>
 
                 <p>
-                  {{post.content2}}
+                  {{posts.content2}}
                 </p>
 
                 <blockquote>
                   <p>
-                    {{post.banner}}
+                    {{posts.banner}}
                   </p>
                 </blockquote>
 
                 <p>
-                  {{post.content3}}
+                  {{posts.content3}}
                 </p>
 
-                <h3>{{post.topic1}}</h3>
+                <h3>{{posts.topic1}}</h3>
                 <p>
-                 {{post.content4}}
+                 {{posts.content4}}
                 </p>
-                <img src={{post.second_image.url}} class="img-fluid" alt="">
+                <img src={{posts.second_image.url}} class="img-fluid" alt="">
 
-                <h3>{{post.topic2}}</h3>
+                <h3>{{posts.topic2}}</h3>
                 <p>
-                  {{post.content}}5
+                  {{posts.content}}5
                 </p>
                 <p>
-                  {{post.endcontent}}
+                  {{posts.endcontent}}
                 </p>
 
               </div><!-- End post content -->
@@ -96,20 +97,20 @@
             </article><!-- End blog post -->
 
             <div class="post-author d-flex align-items-center">
-              <img src={{post.auther_img.url}} class="rounded-circle flex-shrink-0" alt="">
+              <img src={{posts.auther_img.url}} class="rounded-circle flex-shrink-0" alt="">
               <div>
                 <h4>{{post.auther}}</h4>
                 <div class="social-links">
-                  <a href={{post.twitter}}><i class="bi bi-twitter"></i></a>
-                  <a href={{post.facebook}}><i class="bi bi-facebook"></i></a>
-                  <a href={{post.instagram}}><i class="biu bi-instagram"></i></a>
+                  <a href={{posts.twitter}}><i class="bi bi-twitter"></i></a>
+                  <a href={{posts.facebook}}><i class="bi bi-facebook"></i></a>
+                  <a href={{posts.instagram}}><i class="biu bi-instagram"></i></a>
                 </div>
                 <p>
-                  {{post.auther_bio}}
+                  {{posts.auther_bio}}
                 </p>
               </div>
             </div><!-- End post author -->
-
+          {% endfor %}
             <div class="comments">
 
               <h4 class="comments-count">{{post.counted_comment}} Comments</h4>
@@ -139,7 +140,7 @@
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <input type="hidden" name="which_post" value="{{ post.id }}">
+                    <input type="hidden" name="which_post" value={{ post.id }}>
                     <input type="text" class="form-control" placeholder="Your Name*" name="name">
                   </div>
                   <div class="col-md-6 form-group">
@@ -164,29 +165,24 @@
           <div class="col-lg-4">
 
             <div class="sidebar">
-
               <div class="sidebar-item search-form">
                 <h3 class="sidebar-title">Search</h3>
-                <form action="{% url 'blogs:blog_home_with_search' %}" class="mt-3">
-                  <input type="text">
-                  <button type="submit"><i class="bi bi-search"></i></button>
+                <form action="{% url 'blogs:blog_home_with_search' %}" class="mt-3" method="GET">
+                    <input type="text" name="search"> <!-- Add the 'name' attribute here -->
+                    <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
-              </div><!-- End sidebar search formn-->
+            </div><!-- End sidebar search form -->
+            
 
               <div class="sidebar-item categories">
                 <h3 class="sidebar-title">Categories</h3>
                 <ul class="mt-3">
                   <li><a href="#">General <span>(25)</span></a></li>
-                  <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                  <li><a href="#">Travel <span>(5)</span></a></li>
-                  <li><a href="#">Design <span>(22)</span></a></li>
-                  <li><a href="#">Creative <span>(8)</span></a></li>
-                  <li><a href="#">Educaion <span>(14)</span></a></li>
                 </ul>
               </div><!-- End sidebar categories-->
 
-              <div class="sidebar-item recent-posts">
-                <h3 class="sidebar-title">Recent Posts</h3>
+              <div class="sidebar-item recent-post">
+                <h3 class="sidebar-title">Recent post</h3>
 
                 <div class="mt-3">
 
@@ -198,56 +194,14 @@
                     </div>
                   </div><!-- End recent post item-->
 
-                  <div class="post-item">
-                    <img src="{% static 'assets/img/blog/blog-recent-2.jpg' %}" alt="">
-                    <div>
-                      <h4><a href="blog-details.html">Quidem autem et impedit</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="{% static 'assets/img/blog/blog-recent-3.jpg' %}" alt="">
-                    <div>
-                      <h4><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="{% static 'assets/img/blog/blog-recent-4.jpg' %}" alt="">
-                    <div>
-                      <h4><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="{% static 'assets/img/blog/blog-recent-5.jpg' %}" alt="">
-                    <div>
-                      <h4><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
                 </div>
 
-              </div><!-- End sidebar recent posts-->
+              </div><!-- End sidebar recent post-->
 
               <div class="sidebar-item tags">
                 <h3 class="sidebar-title">Tags</h3>
                 <ul class="mt-3">
                   <li><a href="#">App</a></li>
-                  <li><a href="#">IT</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Mac</a></li>
-                  <li><a href="#">Design</a></li>
-                  <li><a href="#">Office</a></li>
-                  <li><a href="#">Creative</a></li>
-                  <li><a href="#">Studio</a></li>
-                  <li><a href="#">Smart</a></li>
-                  <li><a href="#">Tips</a></li>
-                  <li><a href="#">Marketing</a></li>
                 </ul>
               </div><!-- End sidebar tags-->
             </div><!-- End Blog Sidebar -->

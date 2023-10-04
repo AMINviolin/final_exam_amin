@@ -2,7 +2,6 @@ from django.shortcuts import render , redirect
 from .models import *
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import *
-from django.http import HttpResponse
 from django.contrib import messages
 
 
@@ -31,7 +30,7 @@ def blog_home(req, tag=None, username=None, cat=None):
 
     # Filter posts based on search query if provided
     if req.GET.get('search'):
-        posts = Post.objects.filter(content__contains=req.GET.get('search'))
+        posts = Post.objects.filter(title__contains=req.GET.get('search'))
 
     # Paginate the posts with 4 posts per page
     posts = Paginator(posts, 3)
@@ -60,13 +59,15 @@ def blog_home(req, tag=None, username=None, cat=None):
 
 def blog_single(req, pid):
      if req.method == 'GET':
-          try :
+          # try :
                comments = Comments.objects.filter(which_post = pid,status = True)
                cat = Category.objects.all()
                replay = Replay.objects.all()
-               post = Post.objects.get(id=pid, status=True)
+               post = Post.objects.get(id=pid)
                post_list_id = []
+               print(f"pid: {pid}")
                posts = Post.objects.filter(status=True)
+               p1 = Post.objects.filter(id=pid)
                for post in posts:
                     post_list_id.append(post.id)
 
@@ -92,6 +93,7 @@ def blog_single(req, pid):
                post.save()
                context = {
                     'post': post,
+                    'postss':p1,
                     'next' : next_post,
                     'prev' : previous_post,
                     'comments': comments,
@@ -99,8 +101,8 @@ def blog_single(req, pid):
                     'cat': cat,
                }
                return render(req, 'blog/blog-details.html', context=context)
-          except:
-               return render(req, 'blog/404.html')
+          # except:
+          #      return render(req, 'blog/404.html')
      elif req.method == 'POST':
           form = CommentForm(req.POST)
           print(req.POST,req.FILES)
@@ -108,9 +110,9 @@ def blog_single(req, pid):
                form.save()
                messages.add_message(req,messages.SUCCESS,'your comment submited')
                return redirect(req.path_info)
-     else:
-          messages.add_message(req,messages.ERROR,'your comment is invalid')
-          return redirect(req.path_info)
+          else:
+               messages.add_message(req,messages.ERROR,'your comment is invalid')
+               return redirect(req.path_info)
      
 
 def replay(req, cid):
