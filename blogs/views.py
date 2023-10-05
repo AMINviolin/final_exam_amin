@@ -66,8 +66,8 @@ def blog_home(req, tag=None, username=None, cat=None):
 
 def blog_single(req, pid):
      if req.method == 'GET':
-          try :
-               print(f'rrt:{pid}')
+          # try :
+
                comments = Comments.objects.filter(which_post=pid, status=True)
                cat = Category.objects.all()
                replay = Replay.objects.all()
@@ -112,8 +112,8 @@ def blog_single(req, pid):
                     'cat': cat,
                }
                return render(req, 'blog/blog-details.html', context=context)
-          except:
-               return render(req, 'blog/404.html')
+          # except:
+          #      return render(req, 'blog/404.html')
      elif req.method == 'POST':
           form = CommentForm(req.POST)
           print(f"pid: {pid}")
@@ -128,19 +128,26 @@ def blog_single(req, pid):
 
 def replay(req, cid):
      comment = Comments.objects.get(id=cid)
+     coid = cid
      if req.method == 'GET':
+          form = ReplayForm()
           context = {
-               'comment' : comment,
+               'comment1' : comment,
+               'form':form,
+               'cd':coid,
           }
-          return render(req, 'blog/edit.html', context=context)   
+          return render(req, 'blog/reply.html', context=context)   
      
      elif req.method == 'POST':
           form = ReplayForm(req.POST)
           if form.is_valid():
                form.save()
-               return redirect('/blog/')
-          
-
+               ccid = comment.which_post.id
+               return redirect(f'/blogs/post_details/{ccid}')
+          else:
+               messages.add_message(req,messages.ERROR,'your reply is invalid')
+               return redirect(req.path_info)
+ 
 def delete(req, cid):
 
      comment = Comments.objects.get(id=cid)

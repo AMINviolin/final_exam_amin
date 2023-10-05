@@ -74,6 +74,7 @@ class Comments(models.Model):
 class Replay(models.Model):
     which_comment = models.ForeignKey(Comments, on_delete=models.CASCADE)
     message = models.TextField()
+    status= models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:

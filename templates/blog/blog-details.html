@@ -120,12 +120,16 @@
                 <div class="d-flex">
                   
                   <div>
-                    <h5><a href="">{{com.name}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                    <h5><a href="">{{com.name}}</a> <a href="{% url 'blogs:replay' cid=com.id  %}" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
                     <time datetime="2020-01-01">{{com.created_date|date:"d M Y"}}</time>
                     <p>
                       {{com.message}}
                     </p>
                   </div>
+                  <br>
+                  {% for rp in reply %}
+                    <p>{{rp.message}}</p>
+                  {% endfor %}
                   
                 </div>
               </div><!-- End comment #1 -->
@@ -158,7 +162,6 @@
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Post Comment</button>
-                <h3>{{post.id}}</h3>
               </form>
               
 
