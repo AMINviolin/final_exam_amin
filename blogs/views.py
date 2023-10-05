@@ -128,13 +128,11 @@ def blog_single(req, pid):
 
 def replay(req, cid):
      comment = Comments.objects.get(id=cid)
-     coid = cid
      if req.method == 'GET':
           form = ReplayForm()
           context = {
                'comment1' : comment,
                'form':form,
-               'cd':coid,
           }
           return render(req, 'blog/reply.html', context=context)   
      
