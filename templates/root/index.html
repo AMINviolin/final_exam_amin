@@ -13,7 +13,6 @@
           <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="#about" class="btn-get-started">Get Started</a>
-            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
@@ -66,7 +65,6 @@
 
               <div class="position-relative mt-4">
                 <img src="{%  static 'assets/img/about-2.jpg' %}" class="img-fluid rounded-4" alt="">
-                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
               </div>
             </div>
           </div>
@@ -75,25 +73,37 @@
       </div>
     </section><!-- End About Us Section -->
 
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-out">
 
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-1.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-2.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-3.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-4.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-5.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-6.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-7.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{%  static 'assets/img/clients/client-8.png' %}" class="img-fluid" alt=""></div>
+    <!-- ======= Stats Counter Section ======= -->
+    <section id="stats-counter" class="stats-counter">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4 align-items-center">
+
+
+          <div class="col-lg-6">
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end={{sc}} data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Posts</strong> consequuntur quae diredo para mesta</p>
+            </div><!-- End Stats Item -->
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end={{rc}} data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>PortFolios</strong> adipisci atque cum quia aut</p>
+            </div><!-- End Stats Item -->
+
+            <!-- <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="453" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+            </div>End Stats Item -->
+
           </div>
+
         </div>
 
       </div>
-    </section><!-- End Clients Section -->
+    </section><!-- End Stats Counter Section -->
 
     
     <!-- ======= Our Services Section ======= -->
@@ -135,135 +145,6 @@
 
       </div>
     </section><!-- End Our Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Testimonials</h2>
-          <p>Voluptatem quibusdam ut ullam perferendis repellat non ut consequuntur est eveniet deleniti fignissimos eos quam</p>
-        </div>
-
-        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <div class="d-flex align-items-center">
-                    <img src="{%  static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
-                    <div>
-                      <h3>Saul Goodman</h3>
-                      <h4>Ceo &amp; Founder</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <div class="d-flex align-items-center">
-                    <img src="{%  static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
-                    <div>
-                      <h3>Sara Wilsson</h3>
-                      <h4>Designer</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <div class="d-flex align-items-center">
-                    <img src="{%  static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
-                    <div>
-                      <h3>Jena Karlis</h3>
-                      <h4>Store Owner</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <div class="d-flex align-items-center">
-                    <img src="{%  static 'assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
-                    <div>
-                      <h3>Matt Brandon</h3>
-                      <h4>Freelancer</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <div class="d-flex align-items-center">
-                    <img src="{%  static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
-                    <div>
-                      <h3>John Larson</h3>
-                      <h4>Entrepreneur</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio sections-bg">
@@ -347,42 +228,23 @@
           <h2>Pricing</h2>
         </div>
 
-        <div class="row g-5 py-lg-5" data-aos="zoom-out" data-aos-delay="100">
-
+        <div class="row g-4 py-lg-5" data-aos="zoom-out" data-aos-delay="100">
+          {% for item in price %}
           <div class="col-lg-4">
-            <table class="pricing-table">
-              {% for item in price %}
-                <tr>
-                  <td></td>
-                  <td class="pricing-item">
-                    <!-- Pricing item content -->
-                    <h3>{{ item.title }}</h3>
-                    <div class="icon">
-                      <i class="bi bi-box"></i>
-                    </div>
-                    <h4><sup>$</sup>{{ item.price }}<span> / month</span></h4>
-                    <ul>
-                      <li><i class="bi bi-check"></i>{{ item.properties }}</li>
-                    </ul>
-                    <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                  </td>
-                  <td></td>
-                </tr>
-                {% if forloop.counter|divisibleby:3 %}
-                  <tr>
-                    <td colspan="3" style="height: 20px;"></td> <!-- Add vertical space -->
-                  </tr>
-                {% endif %}
-              {% endfor %}
-            </table>
-          </div>
+            <div class="pricing-item">
+              <h3>{{item.title}}</h3>
+              <div class="icon">
+                <i class="bi bi-box"></i>
+              </div>
+              <h4><sup>$</sup>{{item.price}}<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i>{{item.properties}}</li>
+              </ul>
+              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+            {% endfor %}
           
-          
-          
-            
-          
-
-
         </div>
 
       </div>
@@ -393,37 +255,39 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Recent Blog Posts</h2>
+          <h2>last Blog Posts</h2>
         </div>
 
         <div class="row gy-4">
-
+          {% for lp in three_post %}
           <div class="col-xl-4 col-md-6">
             <article>
 
               <div class="post-img">
-                <img src="{%  static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
+                <img src={{lp.image.url}} alt="" class="img-fluid">
               </div>
 
-              <p class="post-category">Politics</p>
+              {% for ct in cat %}
+              <li class="filter-active">{{ ct.name }}</li>
+              {% endfor %}
 
               <h2 class="title">
-                {% comment %} <a href={% url 'blog:blog_single' %}>Dolorum optio tempore voluptas dignissimos</a> {% endcomment %}
+                <a href="{% url 'blogs:blog_single' pid=lp.id %}">{{lp.title}}</a> 
               </h2>
 
               <div class="d-flex align-items-center">
-                <img src="{%  static 'assets/img/blog/blog-author.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <img src={{lp.auther_img.url}} alt="" class="img-fluid post-author-img flex-shrink-0">
                 <div class="post-meta">
-                  <p class="post-author">Maria Doe</p>
+                  <p class="post-author">{{lp.author}}</p>
                   <p class="post-date">
-                    <time datetime="2022-01-01">Jan 1, 2022</time>
+                    <time datetime="2022-01-01">{{lp.created_date}}</time>
                   </p>
                 </div>
               </div>
 
             </article>
           </div><!-- End post list item -->
-
+          {% endfor %}
         </div><!-- End recent posts list -->
 
       </div>

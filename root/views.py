@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from .models import Services,Category,PortFolio,Team,Pricing
 from .forms import ContactUsForm
 from django.contrib import messages
+from blogs.models import Post
 
 
 def home(request,category_id = None):
@@ -15,12 +16,20 @@ def home(request,category_id = None):
     else:
         porto = PortFolio.objects.filter(status = True)
 
+
+    port_count = PortFolio.objects.filter(status = True).count()
+    post_count = Post.objects.filter(status = True).count()
+    last_three_posts = Post.objects.filter(status = True)[:3]
+
     context = {
         'service': service,
         'cat': cat,
+        'three_post':last_three_posts,
         'porto': porto,
         'team':team,
         'price':price,
+        'rc':port_count,
+        'sc':post_count,
         'selected_category':int(category_id) if category_id else None,
     }
     return render(request,'root/index.html',context=context)

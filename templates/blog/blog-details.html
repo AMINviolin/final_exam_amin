@@ -141,7 +141,7 @@
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <input type="hidden" name="which_post" value="{{ post.id }}">
+                    <input type="hidden" name="which_post" value={{post.id}}>
                     <input type="text" class="form-control" placeholder="Your Name*" name="name">
                   </div>
                   <div class="col-md-6 form-group">
@@ -187,31 +187,24 @@
                 </ul>
               </div><!-- End sidebar categories-->
 
-              <div class="sidebar-item recent-post">
-                <h3 class="sidebar-title">Recent post</h3>
 
-                <div class="mt-3">
-
-                  <div class="post-item mt-3">
-                    <img src="{% static 'assets/img/blog/blog-recent-1.jpg' %}" alt="">
-                    <div>
-                      <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                </div>
-
-              </div><!-- End sidebar recent post-->
 
               <div class="sidebar-item tags">
                 <h3 class="sidebar-title">Tags</h3>
                 <ul class="mt-3">
-                  {% for tag in posts.tags.all %}
-                    <li><a href="{% url 'blogs:blog_home_with_tag' tag=tag.name %}">{{tag.name}}</a></li>
+                  {% for tag in tags %}
+                  <li><a href="{% url 'blogs:blog_home_with_tag' tag=tag.name %}">{{tag.name}}</a></li>
                   {% endfor %}
                 </ul>
               </div><!-- End sidebar tags-->
+
+              <div class="sidebar-item auther">
+                <h3 class="sidebar-title">authors</h3>
+                <ul class="mt-3">
+                  {% for auth in post1 %}
+                  <li><a href="{% url 'blogs:blog_home_with_username' username=auth.author %}">{{auth.author}}</a></li>
+                  {% endfor %}
+                </ul>
             </div><!-- End Blog Sidebar -->
 
           </div>

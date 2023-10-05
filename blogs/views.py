@@ -20,15 +20,19 @@ def blog_home(req, tag=None, username=None, cat=None):
 
     # Filter posts based on the provided tag, username, or category
     if tag:
+        print(f"Filtering by tag: {tag}")
         posts = Post.objects.filter(tag__name=tag)
+        print(f"Number of matching posts: {posts.count()}")
+
+
 
     if username:
         posts = Post.objects.filter(author__username=username)
 
     if cat:
-         print(f"Filtering by category: {cat}")
+     #     print(f"Filtering by category: {cat}")
          posts = Post.objects.filter(category__name=cat)
-         print(f"Number of matching posts: {posts.count()}")
+     #     print(f"Number of matching posts: {posts.count()}")
 
     # Filter posts based on search query if provided
     if req.GET.get('search'):
@@ -63,12 +67,16 @@ def blog_home(req, tag=None, username=None, cat=None):
 def blog_single(req, pid):
      if req.method == 'GET':
           try :
+               print(f'its:{pid}')
                comments = Comments.objects.filter(which_post = pid,status = True)
                cat = Category.objects.all()
                replay = Replay.objects.all()
                post = Post.objects.get(id=pid)
-               post_list_id = []
+               print(post)
                posts = Post.objects.filter(status=True)
+               postss = Post.objects.all()
+               tags = Tags.objects.all()
+               post_list_id = []
                p1 = Post.objects.filter(id=pid)
                for post in posts:
                     post_list_id.append(post.id)
@@ -96,10 +104,12 @@ def blog_single(req, pid):
                context = {
                     'post': post,
                     'postss':p1,
+                    'post1':postss,
                     'next' : next_post,
                     'prev' : previous_post,
                     'comments': comments,
                     'replay' : replay,
+                    'tags': tags,
                     'cat': cat,
                }
                return render(req, 'blog/blog-details.html', context=context)
@@ -110,7 +120,6 @@ def blog_single(req, pid):
           print(f"pid: {pid}")
           if form.is_valid():
                form.save()
-
                messages.add_message(req,messages.SUCCESS,'your comment submited')
                return redirect(req.path_info)
           else:
