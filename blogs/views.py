@@ -66,12 +66,12 @@ def blog_home(req, tag=None, username=None, cat=None):
 
 def blog_single(req, pid):
      if req.method == 'GET':
-          # try :
-               print("which_post from form data:", pid)
+          try :
+               print(f'rrt:{pid}')
                comments = Comments.objects.filter(which_post=pid, status=True)
                cat = Category.objects.all()
                replay = Replay.objects.all()
-               post = Post.objects.get(id=pid)
+               post = Post.objects.get(id=pid, status=True)
                posts = Post.objects.filter(status=True)
                postss = Post.objects.all()
                tags = Tags.objects.all()
@@ -112,8 +112,8 @@ def blog_single(req, pid):
                     'cat': cat,
                }
                return render(req, 'blog/blog-details.html', context=context)
-          # except:
-          #      return render(req, 'blog/404.html')
+          except:
+               return render(req, 'blog/404.html')
      elif req.method == 'POST':
           form = CommentForm(req.POST)
           print(f"pid: {pid}")

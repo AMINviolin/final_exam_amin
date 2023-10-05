@@ -94,6 +94,7 @@
                 {% endfor %}
               </div><!-- End meta bottom -->
 
+
             </article><!-- End blog post -->
 
             <div class="post-author d-flex align-items-center">
@@ -141,7 +142,7 @@
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <input type="hidden" name="which_post" value={{post.id}}>
+                    <input type="hidden" name="which_post" value="{{post.id}}">
                     <input type="text" class="form-control" placeholder="Your Name*" name="name">
                   </div>
                   <div class="col-md-6 form-group">
@@ -157,6 +158,7 @@
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Post Comment</button>
+                <h3>{{post.id}}</h3>
               </form>
               
 
