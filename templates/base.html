@@ -44,8 +44,8 @@
   <section id="topbar" class="topbar d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+        <strong>Email:<a href="mailto:amin.djankiller@gmail.com" target="_blank" style="color: rgb(69, 236, 236);">amin.djankiller@gmail.com</a></strong>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+98 9210674105</span></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -62,10 +62,11 @@
       <a href={% url 'root:home' %} class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="{% static 'assets/img/logo.png' %}" alt=""> -->
-        <h1>Impact<span>.</span></h1>
+        <h1>LifeLines<span>.</span></h1>
       </a>
       <nav id="navbar" class="navbar">
         <ul>
+          
           <li><a href={% url 'root:home' %}>Home</a></li>
           <li><a href="{% url 'root:home' %}#about">About</a></li>
           <li><a href="{% url 'root:home' %}#services">Services</a></li>
@@ -73,12 +74,35 @@
           <li><a href="{% url 'root:home' %}#team">Team</a></li>
           <li><a href={% url 'blogs:blog_home' %}>Blog</a></li>
           <li><a href="{% url 'root:contact' %}">Contact</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown">
+            <a href="#"><span>Account</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              {% if request.user.is_authenticated %}
+              <li><img src="{{ request.user.image.url }}" style="width: 70px; height: 70px; border-radius: 50%;" alt="User Image"></li>
+              <li>loged as {{request.user.username}}</li>
+              <li style="color: rgb(250, 235, 96);"><a href="{% url 'accounts:logout' %}">Logout</a></li>
+              <li><a href={% url 'password_change' %}>Change password</a></li>
+              {% else %}
+              <li style="color: rgb(250, 235, 96);"><a href="{% url 'accounts:login2' %}">Login</a></li>
+              <li style="color: rgb(250, 235, 96);"><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+              {% endif %}
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               {% for ct in cat %}
-              <li class="filter-active"><a href="{% url 'root:portfilter' category_id=ct.id %}">{{ ct.name }}</a></li>
+              <li class="filter-active">
+                <a href="{% url 'root:portfilter' category_id=ct.id %}">{{ ct.name }}</a>
+                <a href={% url 'root:info' %}>programmer_info</a>
+              </li>
               {% endfor %}
 
+            </ul>
+          
+          </li>
+          
+          
         </ul>
       </nav><!-- .navbar -->
 
@@ -101,7 +125,7 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
           <a href={% url 'root:home' %} class="logo d-flex align-items-center">
-            <span>Impact</span>
+            <span>LifeLines</span>
           </a>
           
           <div class="social-links d-flex mt-4">
@@ -118,30 +142,28 @@
             <li><a href={% url 'root:home' %}>Home</a></li>
             <li><a href="#about">About us</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#terms">Terms of service</a></li>
-            <li><a href="#privacy">Privacy policy</a></li>
+            <li><a href={% url 'blogs:blog_home' %}>Blogs</a></li>
+            <li><a href="{% url 'root:home' %}#portfolio">PortFolios</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            {% for sc in service %}
+            <li><a href="{% url 'root:home' %}#services">{{sc.title}}</a></li>
+            {% endfor %}
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
           <p>
-            A108 Adam Street <br>
-            New York, NY 535022<br>
-            United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
+            samiei Street <br>
+            Arak|Karahroud|<br>
+            Iran <br><br>
+            <strong>Phone:</strong>+98 9210674105<br>
+            <strong>Email:<a href="mailto:amin.djankiller@gmail.com" target="_blank" style="color: rgb(101, 255, 137);">amin.djankiller@gmail.com</a></strong>
           </p>
 
         </div>
@@ -150,13 +172,12 @@
     </div>
 
     <div class="container mt-4">
-  >
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/impact-bootstrap-business-website-template/ -->
-        Designed by <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><a href="#" >ROOHOLAMIN</a></p>
+         <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-size: larger; color: rgb(220, 250, 22);">Programmer : ROOHOLAMIN</p>
       </div>
     </div>
 

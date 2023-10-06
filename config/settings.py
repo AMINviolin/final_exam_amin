@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "root",
     "blogs",
     "accounts",
+    "captcha",
+
 ]
 
 MIDDLEWARE = [
@@ -127,5 +129,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-AUTH_USER_MODEL = 'accounts.CustumUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'

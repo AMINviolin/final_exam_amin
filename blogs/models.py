@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import CustumUser
+from accounts.models import CustomUser
 
 
 
@@ -32,7 +32,7 @@ class Post(models.Model):
     status = models.BooleanField(default=False)
     image = models.ImageField(upload_to= 'blog', default= 'default.jpg')
     second_image = models.ImageField(upload_to = 'blog', default= 'blog-2.jpg')
-    author = models.ForeignKey(CustumUser, on_delete= models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete= models.CASCADE)
     auther_img = models.ImageField(upload_to= 'blog', default="bauth.jpg")
     auther_bio = models.TextField()
     twitter = models.CharField(max_length=255,default='twitter.com')
@@ -55,7 +55,7 @@ class Post(models.Model):
 
 
 class Comments(models.Model):
-    which_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    which_post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='post')
     name = models.CharField(max_length=50)
     email = models.EmailField()
     subject = models.CharField(max_length=250)
@@ -72,7 +72,7 @@ class Comments(models.Model):
 
 
 class Replay(models.Model):
-    which_comment = models.ForeignKey(Comments, on_delete=models.CASCADE)
+    which_comment = models.ForeignKey(Comments, on_delete=models.CASCADE,related_name='comments')
     message = models.TextField()
     status= models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)

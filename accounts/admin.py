@@ -6,4 +6,4 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(CustumUser)
+admin.site.register(CustomUser)

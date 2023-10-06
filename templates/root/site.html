@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooholamin - Programmer Info</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #afa87d;
+            color: #fff;
+            padding: 20px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .quote {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #3a5048;
+        }
+    </style>
+</head>
+<body>
+    <div style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="header">
+        Rooholamin
+    </div>
+    <div style="color: #938a53;" class="quote">
+        "Hello World! The beginning of every programmer's journey."<br>
+        ~~Good Lock~~
+    </div>
+</body>
+</html>
+
+
+
+{% endblock 'content' %}

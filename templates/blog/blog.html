@@ -39,7 +39,7 @@
                 <img src={{post.image.url}} alt="" class="img-fluid">
               </div>
               {% for cat in post.category.all %}
-              <p class="post-category">{{cat.name}}</p>
+              <p class="post-category">Category : {{cat.name}}</p>
               {% endfor %}
               <a href="{% url 'blogs:blog_single' pid=post.id %}"><h2 class="title">
                 {{post.title}}

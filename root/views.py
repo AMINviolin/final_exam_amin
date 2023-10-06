@@ -64,3 +64,6 @@ def contact(request):
         else:
             messages.add_message(request,messages.ERROR,'invalid input data')
             return redirect('root:contact')
+        
+def info(req):
+    return  render(req, 'root/site.html')
