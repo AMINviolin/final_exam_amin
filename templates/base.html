@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load compress %}
 
 <html>
 <head>
@@ -20,6 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  {% compress css %}
   <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
@@ -28,7 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-
+  {% endcompress %}
   <!-- =======================================================
   * Template Name: Impact
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -189,6 +190,7 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
+  {% compress js %}
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
@@ -199,6 +201,7 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+  {% endcompress %}
 
 </body>
 
