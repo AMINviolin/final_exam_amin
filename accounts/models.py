@@ -3,21 +3,21 @@ from django.contrib.auth.models import AbstractUser, AbstractBaseUser,BaseUserMa
 
 
 class CustomeBaseUserManager(BaseUserManager):
-    def id_norm(self, id_code):
-        id_code = str(id_code)
-        if len(id_code) != 10 or id_code.strip() == False:
-            raise ValueError('Your id is false')
-        return id_code
+    def email_norm(self, email):
+        email = str(email)
+        if email.strip() == False or not email:
+            raise ValueError('Your email is false')
+        return email
 
 
-    def create_user(self, id_code, password, **extra_fields):
-        id_code = self.id_norm(id_code)
-        user = self.model(id_code=id_code, **extra_fields)
+    def create_user(self, email, password, **extra_fields):
+        email = self.email_norm(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save()
         return user
     
-    def create_superuser(self, id_code, password, **extra_fields):
+    def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -25,11 +25,11 @@ class CustomeBaseUserManager(BaseUserManager):
             raise ValueError('superuser should has staff:true')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('superuser should has is.superuser:true')
-        return self.create_user(id_code, password, **extra_fields)
+        return self.create_user(email, password, **extra_fields)
 
 
 class CustomeUser(AbstractBaseUser, PermissionsMixin):
-    id_code = models.IntegerField(unique=True)
+    email = models.IntegerField(unique=True)
     username  = models.CharField(max_length=100, unique=True)
     updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -37,7 +37,7 @@ class CustomeUser(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     
-    USERNAME_FIELD = 'id_code'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = CustomeBaseUserManager()

@@ -20,9 +20,9 @@ def Login(request):
     else:
         captcha_form = CaptchaForm(request.POST)
         if captcha_form.is_valid():
-            id_code = request.POST.get('id_code')
+            email = request.POST.get('email')
             password = request.POST.get('password')
-            user = authenticate(id_code=id_code, password=password)
+            user = authenticate(email=email, password=password)
             if user is not None:
                 login(request,user)
                 return redirect('/')
@@ -51,17 +51,17 @@ def signup(request):
             form = SignUpForm(request.POST,request.FILES)
             if form.is_valid():
                 form.save()
-                id_code = request.POST.get('id_code')
+                email = request.POST.get('email')
                 password = request.POST.get('password1')
-                user = authenticate(id_code=id_code, password=password)
+                user = authenticate(email=email, password=password)
                 if user is not None:
                     login(request,user)
                     return redirect('/')
                 else:
-                    messages.add_message(request, messages.ERROR, 'Invalid id_code or password')
+                    messages.add_message(request, messages.ERROR, 'Invalid email or password')
                     return redirect(request.path_info)
             else:
-                messages.add_message(request, messages.ERROR, 'Invalid id_code or password')
+                messages.add_message(request, messages.ERROR, 'Invalid email or password')
                 return redirect(request.path_info)
             
         else:
