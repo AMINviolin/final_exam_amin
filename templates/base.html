@@ -45,7 +45,7 @@
   <section id="topbar" class="topbar d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <strong>Email:<a href="mailto:amin.djankiller@gmail.com" target="_blank" style="color: rgb(69, 236, 236);">amin.djankiller@gmail.com</a></strong>
+        <strong>Email:<a href="mailto:amin.djankillersms@gmail.com" target="_blank" style="color: rgb(69, 236, 236);">amin.djankillersms@gmail.com</a></strong>
         <i class="bi bi-phone d-flex align-items-center ms-4"><span>+98 9210674105</span></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
@@ -63,7 +63,7 @@
       <a href={% url 'root:home' %} class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="{% static 'assets/img/logo.png' %}" alt=""> -->
-        <h1>LifeLines<span>.</span></h1>
+        <h1>MortalBlog<span>.</span></h1>
       </a>
       <nav id="navbar" class="navbar">
         <ul>
@@ -75,6 +75,10 @@
           <li><a href="{% url 'root:home' %}#team">Team</a></li>
           <li><a href={% url 'blogs:blog_home' %}>Blog</a></li>
           <li><a href="{% url 'root:contact' %}">Contact</a></li>
+          {% if request.user.is_authenticated and request.user.is_superuser %}
+          <li><a href="{% url 'blogs:add' %}">Add Post</a></li>
+          {% endif %}
+      
           <li class="dropdown">
             <a href="#"><span>Account</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
@@ -90,14 +94,14 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <a href="#"><span>Category</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               {% for ct in cat %}
               <li class="filter-active">
                 <a href="{% url 'root:portfilter' category_id=ct.id %}">{{ ct.name }}</a>
-                <a href={% url 'root:info' %}>programmer_info</a>
               </li>
               {% endfor %}
+              <a href={% url 'root:info' %}>programmer_info</a>
 
             </ul>
           
@@ -126,14 +130,14 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
           <a href={% url 'root:home' %} class="logo d-flex align-items-center">
-            <span>LifeLines</span>
+            <span>MortalBlog</span>
           </a>
           
           <div class="social-links d-flex mt-4">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.twitter.com/search/results/all/?keywords=your_query" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="https://www.facebook.com/search/results/all/?keywords=your_query" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/accounts/login/search/results/all/?keywords=your_query" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/search/results/all/?keywords=your_query" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
@@ -164,7 +168,7 @@
             Arak|Karahroud|<br>
             Iran <br><br>
             <strong>Phone:</strong>+98 9210674105<br>
-            <strong>Email:<a href="mailto:amin.djankiller@gmail.com" target="_blank" style="color: rgb(101, 255, 137);">amin.djankiller@gmail.com</a></strong>
+            <strong>Email:<a href="mailto:amin.djankillersms@gmail.com" target="_blank" style="color: rgb(101, 255, 137);">amin.djankillersms@gmail.com</a></strong>
           </p>
 
         </div>

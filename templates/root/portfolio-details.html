@@ -98,8 +98,11 @@
               {% endfor %} 
               <li><strong>Client</strong> <span>{{item.client}}</span></li>
               <li><strong>Project date</strong> <span>{{item.project_date}}</span></li>
-              <li><strong>Project URL</strong> <a href={{item.project_url}}>view blog</a></li>
-              <li><a href={{item.project_url}} class="btn-visit align-self-start">Visit Website</a></li>
+              {% if item.project_url %}
+                <li><strong>Project URL</strong> <a href="{{ item.project_url }}">view blog</a></li>
+                <li><a href="{{ item.project_url }}" class="btn-visit align-self-start">Visit Website</a></li>
+              {% endif %}
+
             </ul>
           </div>
         </div>

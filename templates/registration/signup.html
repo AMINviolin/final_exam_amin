@@ -10,6 +10,8 @@
     {{form.as_p}}
     {{captcha}}
     &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" style="background-color: #0d0e0b; color: #ffff00; padding: 6px 14px; border: 3px; border-radius: 5px; cursor: pointer;">SignUp</button>
+    <a href="{% url 'accounts:login2' %}" >Do you have an Account?</a>
+    
     {% if messages %}
         {% for message in messages %}
         {{message}}

@@ -9,10 +9,10 @@
     <div class="container position-relative">
       <div class="row gy-5" data-aos="fade-in">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-          <h2>Welcome to <span>LifeLines</span></h2>
-          <p>This is a Blog and Portfolio page .Step into my world at LifeLines, where my passion for storytelling and creativity converge, giving life to the moments that matter most.</p>
+          <h2>Welcome to <span style="font: size 10px;">MortalBlog</span></h2>
+          <p>This is a Blog and Portfolio page .Step into my world at MortalBlog, where my passion for storytelling and creativity converge, giving life to the moments that matter most.</p>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started">Get Started</a>
+            <a href="{% url 'accounts:signup' %}" class="btn-get-started">Get Started</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
@@ -41,10 +41,10 @@
 
         <div class="row gy-4">
           <div class="col-lg-6">
-            <h3>Discover the Vision Behind LifeLines</h3>
+            <h3>Discover the Vision Behind MortalBlog</h3>
             <img src="{%  static 'assets/img/about.jpg' %}" class="img-fluid rounded-4 mb-4" alt="">
-            <p>Our mission at LifeLines is simple: to inspire, inform, and ignite imaginations. Here, we delve into the art of storytelling, exploring the myriad ways in which narratives can paint vivid pictures in the reader's mind.</p>
-            <p>From travel adventures that transport you to distant lands, to heartfelt reflections on life's profound moments, LifeLines is a tapestry of experiences and emotions. We believe that every life has a unique story to tell, and we're here to celebrate those stories.</p>
+            <p>Our mission at MortalBlog is simple: to inspire, inform, and ignite imaginations. Here, we delve into the art of storytelling, exploring the myriad ways in which narratives can paint vivid pictures in the reader's mind.</p>
+            <p>From travel adventures that transport you to distant lands, to heartfelt reflections on life's profound moments, MortalBlog is a tapestry of experiences and emotions. We believe that every life has a unique story to tell, and we're here to celebrate those stories.</p>
           </div>
           <div class="col-lg-6">
             <div class="content ps-0 ps-lg-5">
@@ -52,9 +52,9 @@
                 Our team of writers and photographers are dedicated to capturing the essence of life's beauty, whether through the lens of a camera or the stroke of a pen. We invite you to journey with us as we navigate the intricate landscapes of human existence.
               </p>
               <ul>
-                <li><i class="bi bi-check-circle-fill"></i>At LifeLines, we're dedicated to crafting engaging content that keeps you coming back for more.</li>
+                <li><i class="bi bi-check-circle-fill"></i>At MortalBlog, we're dedicated to crafting engaging content that keeps you coming back for more.</li>
                 <li><i class="bi bi-check-circle-fill"></i>Explore the fascinating world of storytelling through our unique perspective, where words and images unite.</li>
-                <li><i class="bi bi-check-circle-fill"></i>oin us on a journey through LifeLines, where we strive to inspire and captivate your imagination with every post.</li>
+                <li><i class="bi bi-check-circle-fill"></i>oin us on a journey through MortalBlog, where we strive to inspire and captivate your imagination with every post.</li>
               </ul>
               <p>
                 We also value your voice and perspective. Feel free to engage with us through comments and sharing your own stories. Together, we can make this blog a vibrant community where ideas flow freely.
@@ -104,43 +104,85 @@
 
     
     <!-- ======= Our Services Section ======= -->
-    <section id="services" class="services sections-bg">
+    <style>
+      /* Add your CSS styles here */
+      .service-item {
+          position: relative;
+      }
+
+      .service-item input[type="checkbox"] {
+          display: none;
+      }
+
+      .service-item label {
+          display: block;
+          cursor: pointer;
+          padding: 10px;
+          background-color: #f0f0f0;
+          border: 1px solid #ddd;
+          margin-bottom: 10px;
+      }
+
+      .service-item label:hover {
+          background-color: #e0e0e0;
+      }
+
+      .service-item input[type="checkbox"]:checked + label {
+          background-color: #FFFFFF; /* Change the background color when checked */
+      }
+
+      .service-item input[type="checkbox"]:checked + label + p {
+          display: block;
+      }
+
+      .service-item .read-more-label {
+          display: none;
+      }
+
+      .service-item input[type="checkbox"]:checked + label + .read-more-label {
+          display: block;
+      }
+
+      .service-item p {
+          display: none;
+          padding: 10px;
+          border-top: 1px solid #ffffff;
+      }
+  </style>
+
+  <section id="services" class="services sections-bg">
       <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Our Services</h2>
-        </div>
-
-        <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
-          {% for item in service %}
-          <div class="col-lg-4 col-md-4">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-broadcast"></i>
-              </div>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.content|truncatewords:3 }}</p>
-              
-            </div>
-
+          <div class="section-header">
+              <h2>Our Services</h2>
           </div>
-          
-          {% if forloop.counter|divisibleby:3 %}
-            </div><div class="row" >
-            <p></p> 
-            <br><br><br>
-
-          {% endif %}
-          
-          {% if forloop.last %}
-            </div> 
-          {% endif %}
-        {% endfor %}
+          <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+              {% for item in service %}
+              <div class="col-lg-4 col-md-4">
+                  <div class="service-item">
+                      <input type="checkbox" id="service-item-{{ forloop.counter }}">
+                      <label for="service-item-{{ forloop.counter }}">
+                          <div class="icon">
+                              <i class="bi bi-broadcast"></i>
+                          </div>
+                          <h3>{{ item.title }}</h3>
+                          <p>{{ item.content|truncatewords:4 }}</p>
+                          <span class="read-more-label">Read More</span>
+                      </label>
+                      <p>{{ item.content }}</p> <!-- Full content, initially hidden -->
+                  </div>
+              </div>
+              {% if forloop.counter|divisibleby:3 %}
+                  </div><div class="row" >
+                  <p></p> 
+                  <br><br><br>
+              {% endif %}
+              {% if forloop.last %}
+                  </div> 
+              {% endif %}
+              {% endfor %}
+          </div>
       </div>
-  
-
-      </div>
-    </section><!-- End Our Services Section -->
+  </section><!-- End Our Services Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio sections-bg">

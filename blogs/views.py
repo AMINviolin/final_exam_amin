@@ -68,13 +68,14 @@ def blog_home(req, tag=None, username=None, cat=None):
 def blog_single(req, pid):
      if req.method == 'GET':
           try :
-
+               
                comments = Comments.objects.filter(which_post=pid, status=True)
                cat = Category.objects.all()
                replay = Replay.objects.all()
                post = Post.objects.get(id=pid, status=True)
                posts = Post.objects.filter(status=True)
                postss = Post.objects.all()
+               unique_authors = set(post.author for post in postss)
                tags = Tags.objects.all()
                post_list_id = []
                p1 = Post.objects.filter(id=pid)
@@ -111,6 +112,7 @@ def blog_single(req, pid):
                     'replay' : replay,
                     'tags': tags,
                     'cat': cat,
+                    'unique_authors': unique_authors,
                }
                return render(req, 'blog/blog-details.html', context=context)
           except:
@@ -184,3 +186,15 @@ def edit(req, cid):
             }
             return render(req, 'blog/commentedit.html', context=context)
           
+
+def add(req):
+     if req.method == 'GET':
+          context = {
+               'form' : PostForm()
+          }
+          return render(req,'blog/add.html',context=context)
+     elif req.method == 'POST':
+          form = PostForm(req.POST, req.FILES)
+          if form.is_valid():
+               form.save()
+               return redirect('/blogs/')

@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser
+from .models import CustomeUser
 from .forms import CaptchaForm
 
 
@@ -20,12 +20,9 @@ def Login(request):
     else:
         captcha_form = CaptchaForm(request.POST)
         if captcha_form.is_valid():
-            if '@' in request.POST.get('username'):
-                username = CustomUser.objects.get(email=request.POST.get('username')).username
-            form =AuthenticationForm(request.POST)
-            username = request.POST.get('username')
+            id_code = request.POST.get('id_code')
             password = request.POST.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(id_code=id_code, password=password)
             if user is not None:
                 login(request,user)
                 return redirect('/')
@@ -54,17 +51,17 @@ def signup(request):
             form = SignUpForm(request.POST,request.FILES)
             if form.is_valid():
                 form.save()
-                username = request.POST.get('username')
+                id_code = request.POST.get('id_code')
                 password = request.POST.get('password1')
-                user = authenticate(username=username, password=password)
+                user = authenticate(id_code=id_code, password=password)
                 if user is not None:
                     login(request,user)
                     return redirect('/')
                 else:
-                    messages.add_message(request, messages.ERROR, 'Invalid username or password')
+                    messages.add_message(request, messages.ERROR, 'Invalid id_code or password')
                     return redirect(request.path_info)
             else:
-                messages.add_message(request, messages.ERROR, 'Invalid username or password')
+                messages.add_message(request, messages.ERROR, 'Invalid id_code or password')
                 return redirect(request.path_info)
             
         else:

@@ -127,10 +127,11 @@
                     </p>
                   </div>
                   {% for rp in replay %}
-                  {% if rp.which_comment == com %}
-                      <p style="color: rgb(152, 209, 72);">Reply: {{ rp.message }} **</p>
+                  {% if rp.which_comment == com and rp.status == True %}
+                      <p style="color: rgb(152, 209, 72);">Reply: {{ rp.message }} **</p><br>
                   {% endif %}
                   {% endfor %}
+              
 
 
                   {% if request.user.is_authenticated and request.user.username == comment.name %}
@@ -219,9 +220,11 @@
               <div class="sidebar-item auther">
                 <h3 class="sidebar-title">authors</h3>
                 <ul class="mt-3">
-                  {% for auth in post1 %}
-                  <li><a href="{% url 'blogs:blog_home_with_username' username=auth.author %}">{{auth.author}}</a></li>
+                  {% for author in unique_authors %}
+                  <li><a href="{% url 'blogs:blog_home_with_username' username=author %}">{{ author }}</a></li>
                   {% endfor %}
+              
+                  
                 </ul>
             </div><!-- End Blog Sidebar -->
 
