@@ -5,8 +5,9 @@ SECRET_KEY = '(8v857f95uihigiogijijjjjfssiijfjiooruaslIAJNHVzd(hhd5ll)2bo@9bga%s
 DEBUG = False
 ALLOWED_HOSTS = ['mortalblogs.ir','www.mortalblogs.ir']
 
-# STATIC_ROOT = BASE_DIR/'/static'
-# MEDIA_ROOT = BASE_DIR/'media'
+
+STATIC_ROOT = '/home/mortalbl/public_html/static/'
+MEDIA_ROOT = '/home/mortalbl/public_html/media/'
 
 DATABASES = {
 	'default': {

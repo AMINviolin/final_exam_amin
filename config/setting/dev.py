@@ -14,10 +14,10 @@ DATABASES = {
 }
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATICFILES_DIRS = [
-    BASE_DIR/'static',
+    BASE_DIR/'static/',
     BASE_DIR/'media',
 ]
 
