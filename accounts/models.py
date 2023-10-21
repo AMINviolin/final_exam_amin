@@ -29,7 +29,7 @@ class CustomeBaseUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.IntegerField(unique=True)
+    email = models.EmailField(unique=True)
     username  = models.CharField(max_length=100, unique=True)
     updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
