@@ -3,7 +3,8 @@ from .models import *
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import *
 from django.contrib import messages
-
+from django.views.generic import ListView, DetailView, TemplateView
+from .cart import Cart
 
 def blog_home(req, tag=None, username=None, cat=None):
     
@@ -119,7 +120,6 @@ def blog_single(req, pid):
                return render(req, 'blog/404.html')
      elif req.method == 'POST':
           form = CommentForm(req.POST)
-          print(f"pid: {pid}")
           posts1 = Post.objects.get(id=pid)
           if form.is_valid():
                com = form.save(commit=False)
@@ -187,6 +187,45 @@ def edit(req, cid):
             return render(req, 'blog/commentedit.html', context=context)
           
 
+class PostListView(ListView):
+    template_name = 'blog/blog.html'
+    context_object_name = 'post'
+    paginate_by = 3
+
+    def get_queryset(self):
+        if self.kwargs.get('cat'):
+            return Post.objects.filter(category__name=self.kwargs.get('cat'))
+        elif self.kwargs.get('teacher'):
+            return Post.objects.filter(auther__info = self.kwargs.get('auther'))
+        elif self.request.GET.get('search'):
+            return Post.objects.filter(content__contains = self.request.GET.get('search'))
+        else:
+            return Post.objects.filter(status=True) 
+    def post(self, request, *args, **kwargs):
+        post_detail = PostDetailView()
+        return post_detail.post(request,*args,**kwargs)
+
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/blog-details.html'
+    context_object_name = 'blog'
+
+    
+    def post(self, request, *args, **kwargs):
+        cart = Cart(request)
+        if 'id' in request.POST :
+            product = get_object_or_404(Post, id=request.POST['id'])    
+            cart.delete_from_cart(product)       
+        else:
+            product = get_object_or_404(Post, id=request.POST['pk'])
+            cart.add_to_cart_one_quatity(product)
+
+        print(cart)
+        return redirect(request.path_info)
+
+
+
 def add(req):
      if req.method == 'GET':
           context = {
@@ -198,3 +237,11 @@ def add(req):
           if form.is_valid():
                form.save()
                return redirect('/blogs/')
+          
+
+
+class PaymentView(TemplateView):
+    template_name = 'blog/cart.html'
+    def query_set(self):
+        cart = Cart(self.request)
+        return cart

@@ -75,6 +75,7 @@
           <li><a href="{% url 'root:home' %}#team">Team</a></li>
           <li><a href={% url 'blogs:blog_home' %}>Blog</a></li>
           <li><a href="{% url 'root:contact' %}">Contact</a></li>
+          <li><a href={% url 'blogs:cart' %}>Submit and pay {{ cart|length}}</a></li>
           {% if request.user.is_authenticated and request.user.is_superuser %}
           <li><a href="{% url 'blogs:add' %}">Add Post</a></li>
           {% endif %}

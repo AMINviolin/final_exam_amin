@@ -6,7 +6,7 @@ from .models import *
 
 class CustomUserAdmin(UserAdmin):
     list_display= ['email','is_staff','is_superuser','is_verified','is_active']
-    list_filter = ['isverified']
+    list_filter = ['is_verified']
     search_fields = ['email']
     ordering = ['email']
 
@@ -21,5 +21,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('email', 'username', 'password1', 'password2')
         }),
         )
+    
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Profile)

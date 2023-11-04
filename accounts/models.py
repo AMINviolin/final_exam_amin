@@ -48,7 +48,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=50)
     image = models.ImageField(upload_to="user",default="user.png")
-    phone = models.IntegerField(max_length=10,blank=True)
+    phone = models.IntegerField(blank=True,null=True)
     address = models.CharField(max_length=10)
 
     def __str__(self):

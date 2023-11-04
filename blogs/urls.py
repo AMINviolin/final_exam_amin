@@ -20,4 +20,5 @@ urlpatterns = [
     path('delete/<int:cid>', delete , name='delete'),
     path('edit/<int:cid>', edit , name='edit'),
     path('add/', add , name='add'),
+    path("payment",PaymentView.as_view(),name="cart"),
 ]

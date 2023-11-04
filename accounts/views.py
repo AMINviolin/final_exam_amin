@@ -1,10 +1,9 @@
 from django.shortcuts import render,redirect
 from.forms import SignUpForm
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from .forms import CaptchaForm
+from .forms import CaptchaForm,AuthenticationForm
 
 
 
@@ -19,7 +18,7 @@ def Login(request):
     else:
         captcha_form = CaptchaForm(request.POST)
         if captcha_form.is_valid():
-            email = request.POST.get('email').strip()
+            email = request.POST.get('email')
             password = request.POST.get('password')
             user = authenticate(email=email, password=password)
             if user is not None:

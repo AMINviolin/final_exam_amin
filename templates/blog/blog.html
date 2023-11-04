@@ -43,6 +43,11 @@
               {% endfor %}
               <a href="{% url 'blogs:blog_single' pid=post.id %}"><h2 class="title">
                 {{post.title}}
+                <form method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="pk" value="{{post.pid}}"> 
+                  <button type="submit">Add To Cart</button>
+                </form>
               </h2>
               </a>
               

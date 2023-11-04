@@ -42,7 +42,16 @@
               <div class="post-img">
                 <img src={{posts.image.url}} alt="" class="img-fluid">
               </div>
-
+              <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="pk" value="{{posts.pid}}"> 
+                <button type="submit">Add To Cart</button>
+              </form>
+              <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{posts.pid}}"> 
+                <button type="submit">Delete From Cart</button>
+              </form>
               <h2 class="title">{{posts.title}}</h2>
 
               <div class="meta-top">
